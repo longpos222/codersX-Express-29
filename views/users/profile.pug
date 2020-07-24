@@ -1,0 +1,30 @@
+extends ../layouts/common.pug
+block content
+  h4 User profile
+  form
+    .form-group
+      h4 Name: #{currentName} - Email: #{currentEmail} - Phone: #{currentPhone}
+      img(src=`${currrentAvatarUrl}`, width= 64)
+    .form-group
+      a.btn.btn-secondary(href="/users/profile/avatar") Update avatar
+    .form-group
+      h4 Book list in cart:
+      table(class="table")
+        thead
+          tr.d-flex
+            th.col(scope="col") Cover
+            th.col(scope="col") Title
+            th.col-6(scope="col") Description
+            th.col(scope="col") Action
+        tbody
+          each book in booksList
+            tr.d-flex
+              td.col
+                img(src=book ? book.coverUrl : "")        
+              td.col=book ? book.title : "Invalid book"
+              td.col-6=book ? book.desc : "No description"
+                //td.col
+                  .group-btn
+                    a.btn.btn-primary.mr-2(href='/transactions/create/' + book.Id) Borrow this book
+      a.btn.btn-secondary(href="/cart/borrow") Borrow All Books
+      
