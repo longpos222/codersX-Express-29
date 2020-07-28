@@ -1,7 +1,7 @@
 extends ../layouts/common.pug
 block content
   h4 Update book title
-  h4 Current book title: "#{currentTitle}" 
+  h4 Current book title: #{currentTitle}
   
   form(action="/books/update-title/" + currentBookID, method="POST")
     .form-group

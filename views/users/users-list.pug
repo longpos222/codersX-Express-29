@@ -20,8 +20,8 @@ block content
           td=user ? user.email : "No email"
           td
             .group-btn
-            a.btn.btn-primary.mr-1(href='/users/update-name/' + user.id) Update name
-            a.btn.btn-primary.mr-1(href='/users/delete/' + user.id) Delete
+            a.btn.btn-primary.mr-1(href='/users/update-name/' + user._id) Update name
+            a.btn.btn-primary.mr-1(href='/users/delete/' + user._id) Delete
  
   nav
   ul.pagination

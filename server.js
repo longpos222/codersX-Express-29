@@ -1,4 +1,9 @@
 const express = require("express");
+
+const mongoose = require('mongoose');
+mongoose.connect("mongodb://localhost/express-25",{useNewUrlParser: true});
+mongoose.set('useFindAndModify', false);
+
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 

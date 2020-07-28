@@ -1,19 +1,15 @@
-var shortid = require("shortid");
+const Session = require("../models/session.model.js");
+const nanoid = require('nanoid');
 
-var db = require("../db");
-
-module.exports = function(req, res, next) {
+module.exports = async function(req, res, next) {
   if (!req.signedCookies.sessionId) {
-    var sessionId = shortid();
-    
-    db.get("sessionList")
-      .push({ id: sessionId })
-      .write();
-    
+    var sessionId = nanoid(24) ;
+    await Session.findOneAndUpdate({"sessionId": sessionId },{ "sessionId": sessionId },{upsert: true});
+    console.log(`${Date.now()} và ${sessionId}`);
     res.cookie("sessionId", sessionId, {
       signed: true
     });
   }
-
+  
   next();
 };

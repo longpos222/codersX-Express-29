@@ -17,7 +17,7 @@ block content
           td.col-6=book ? book.desc : "No description"
           td.col
             .group-btn
-              a.btn.btn-primary.mr-2(href='/cart/add/' + book.id) Add to cart
-              //a.btn.btn-primary.mr-2(href='/books/update-title/' + book.id) Update title
-              //a.btn.btn-primary.mr-2(href='/books/delete/' + book.id) Delete this book
+              a.btn.btn-primary.mr-2(href='/cart/add/' + book._id) Add to cart
+              a.btn.btn-primary.mr-2(href='/books/update-title/' + book._id) Update title
+              a.btn.btn-primary.mr-2(href='/books/delete/' + book._id) Delete this book
   a.btn.btn-secondary(href="/books/add") Add more book

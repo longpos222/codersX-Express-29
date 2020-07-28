@@ -5,21 +5,19 @@ var saltRounds = 10;
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-var db = require("../db");
+const User = require('../models/user.model.js')
+const Session = require("../models/session.model.js");
+
 
 module.exports.login = function(req, res) {
   res.render("auth/login");
 };
 
-module.exports.postLogin = function(req, res) {
-  var email = req.body.email;
-  var password = req.body.password;
-
-  var user = db
-    .get("usersList")
-    .find({ email: email })
-    .value();
-
+module.exports.postLogin = async function(req, res) {
+  var authEmail = req.body.email;
+  var authPassword = req.body.password;
+  var user = await User.findOne({email: authEmail});
+  
   if (!user) {
     res.render("auth/login", {
       errors: ["User does not exist !"],
@@ -32,9 +30,7 @@ module.exports.postLogin = function(req, res) {
     to: user.email,
     from: process.env.SENDGRID_EMAIL,
     subject: "Security alert: new or unusual login",
-    text:
-      "Looks like there was a login attempt from a new device or location. Your account has been locked.",
-    html: "<strong>Your account has been locked.</strong>"
+    text: "Looks like there was a login attempt from a new device or location. Your account has been locked.", html: "<strong>Your account has been locked.</strong>"
   };
 
   if (!user.wrongLoginCount) {
@@ -50,11 +46,8 @@ module.exports.postLogin = function(req, res) {
     return;
   }
 
-  if (!bcrypt.compareSync(password, user.password)) {
-    db.get("usersList")
-      .find({ email: email })
-      .assign({ wrongLoginCount: ++user.wrongLoginCount })
-      .write();
+  if (!bcrypt.compareSync(authPassword, user.password)) {
+    await User.findOneAndUpdate({ email: authEmail },{wrongLoginCount: ++user.wrongLoginCount})
 
     res.render("auth/login", {
       errors: ["Wrong password !"],
@@ -62,17 +55,19 @@ module.exports.postLogin = function(req, res) {
     });
     return;
   }
-
+  console.log(`OK 1 va ${user}`)
   res.cookie("userId", user.id, {
     signed: true
   });
-
+  console.log(`OK 2 va ${user}`)
   var sessionId = req.signedCookies.sessionId;
   if (sessionId) {
-    db.get("sessionList")
-      .find({ id: sessionId })
-      .assign({ userId: user.id })
-      .write();
+    await Session.findOneAndUpdate(
+      {sessionId: sessionId},
+      {userId: user.id},
+      {upsert: true})
   }
+  console.log(`OK 3 va ${user}`)
   res.redirect("/transactions");
+  console.log(`OK 4 va ${user}`)
 };
