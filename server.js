@@ -1,11 +1,17 @@
 const express = require("express");
-
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/express-25",{useNewUrlParser: true});
-mongoose.set('useFindAndModify', false);
-
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const dotenv = require("dotenv").config();
+
+mongoose.connect(
+    process.env.MONGO_URL,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }
+);
+mongoose.set('useFindAndModify', false);
 
 const userRoute = require("./routes/user.route");
 const bookRoute = require("./routes/book.route");
@@ -13,9 +19,9 @@ const transactionRoute = require("./routes/transaction.route");
 const authRoute = require("./routes/auth.route");
 const cartRoute = require('./routes/cart.route');
 
-const cookieMiddleware = require("./middleware/cookie.middleware");
 const authMiddleware = require("./middleware/auth.middleware");
 const sessionMiddleware = require("./middleware/session.middleware");
+const cookieMiddleware = require("./middleware/cookie.middleware");
 
 const app = express();
 const port = 8080;
@@ -23,11 +29,11 @@ const port = 8080;
 app.set("view engine", "pug");
 app.set("views", "./views");
 
-app.use(cookieParser("xxx"));
+app.use(cookieParser(process.env.COOKIE_SIGNED_KEY));
+app.use(sessionMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(sessionMiddleware);
 
 app.use("/users", authMiddleware.requireAuth, userRoute);
 app.use("/books",bookRoute);

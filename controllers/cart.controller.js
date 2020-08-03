@@ -1,7 +1,6 @@
-var db = require("../db");
-var shortid = require('shortid')
-
-module.exports.addToCart = (req, res) => {
+const Session = require("../models/session.model.js");
+const Transaction = require("../models/transaction.model.js");
+module.exports.addToCart = async (req, res) => {
   var bookId = req.params.bookId;
   var sessionId = req.signedCookies.sessionId;
 
@@ -10,38 +9,32 @@ module.exports.addToCart = (req, res) => {
     return;
   }
 
-  var count = db
-    .get("sessionList")
-    .find({ id: sessionId })
-    .get("cart." + bookId, 0)
-    .value();
+  var isExists = await Session.findOne({"sessionId": sessionId, [`cart.${bookId}`]: {$exists : true}});
+  
+  if(!isExists) {
+    await Session.findOneAndUpdate({sessionId: sessionId},{$set: {[`cart.${bookId}`] : 0 }});
+  }
 
-  db.get("sessionList")
-    .find({ id: sessionId })
-    .set("cart." + bookId, count + 1)
-    .write();
+  await Session.findOneAndUpdate({sessionId: sessionId},{$inc: {[`cart.${bookId}`] : 1 }});
 
   res.redirect("/books");
 };
 
-module.exports.borrowAll = function (req, res) {
-  
-  var booksIdList = db.get('sessionList')
-      .find({id: req.signedCookies.sessionId})
-      .get('cart')
-      .value()
-  
-  for ( var bookId in booksIdList) {
-    console.log(Date() +" la : " + bookId)
-   db.get("transactionsList")
-    .push({
-      id: shortid(),
-      bookId: bookId,
-      userId: req.signedCookies.userId
-    })
-    .write();
-        console.log(Date() +" la : " + bookId)
- }
+module.exports.borrowAll = async function (req, res) {
+  const userId = req.signedCookies.userId;
+  var sessionId = req.signedCookies.sessionId;
+  var session = await Session.findOne({sessionId: sessionId});
+  var booksIdList = Object.keys(session.cart)
 
+  for(let id of booksIdList){
+    let c ={
+      userId: userId,
+      bookId: id,
+      isComplete: true
+    }
+    await Transaction.insertMany(c)
+  }
+  //TAKENOTE
+  
   res.redirect("/transactions");
 }

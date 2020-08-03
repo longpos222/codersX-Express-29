@@ -9,4 +9,7 @@ block content
       label Description 
       input.form-control(type="text", name="desc")
     button.btn.btn-primary Add this book
+  if errors
+    each error in errors
+      .alert.alert-danger= error
   a(href="/books/") Back

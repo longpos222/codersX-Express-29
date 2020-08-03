@@ -1,13 +1,13 @@
 var md = require("md5");
 var bcrypt = require("bcrypt");
 var saltRounds = 10;
+const dotenv = require("dotenv").config();
 
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const User = require('../models/user.model.js')
 const Session = require("../models/session.model.js");
-
 
 module.exports.login = function(req, res) {
   res.render("auth/login");
@@ -55,11 +55,9 @@ module.exports.postLogin = async function(req, res) {
     });
     return;
   }
-  console.log(`OK 1 va ${user}`)
   res.cookie("userId", user.id, {
     signed: true
   });
-  console.log(`OK 2 va ${user}`)
   var sessionId = req.signedCookies.sessionId;
   if (sessionId) {
     await Session.findOneAndUpdate(
@@ -67,7 +65,5 @@ module.exports.postLogin = async function(req, res) {
       {userId: user.id},
       {upsert: true})
   }
-  console.log(`OK 3 va ${user}`)
   res.redirect("/transactions");
-  console.log(`OK 4 va ${user}`)
 };

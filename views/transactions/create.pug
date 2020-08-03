@@ -8,13 +8,13 @@ block content
       label(for="user") Borrower Name: 
       select.custom-select#user(name='userId')
         each user in users
-          option(value=user.id)=user.name
+          option(value=user._id)=user.name
       
     .form-group  
       label(for="book") Book Title: 
       select.custom-select#book(name='bookId')
         each book in books
-          option(value=book.id)=book.title
+          option(value=book._id)=book.title
         
     button.btn.btn-primary Add transaction
   a(href="/transactions/") Back

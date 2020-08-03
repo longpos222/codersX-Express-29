@@ -10,6 +10,6 @@ router.get("/create", controller.create);
 
 router.post("/create", controller.createPOST);
 
-router.get("/:id/complete", controller.complete);
+router.get("/:_id/complete", controller.complete);
 
 module.exports = router;

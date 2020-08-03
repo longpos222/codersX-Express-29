@@ -14,11 +14,11 @@ router.get("/add", controller.add);
 
 router.post("/add", upload.single('avatar'), validate.validateUser, controller.addPOST);
 
-router.get("/update-name/:id", controller.update);
+router.get("/update-name/:_id", controller.update);
 
-router.get("/delete/:id", controller.delete);
+router.get("/delete/:_id", controller.delete);
 
-router.post("/update-name/:id", controller.updatePOST);
+router.post("/update-name/:_id", controller.updatePOST);
 
 router.get('/profile', controller.profile);
 

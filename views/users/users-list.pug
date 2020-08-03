@@ -22,21 +22,21 @@ block content
             .group-btn
             a.btn.btn-primary.mr-1(href='/users/update-name/' + user._id) Update name
             a.btn.btn-primary.mr-1(href='/users/delete/' + user._id) Delete
- 
-  nav
-  ul.pagination
-    li.page-item
-      a.page-link(href="?page=0", aria-label="Previous")
-        span(aria-hidden="true") &laquo;
-        span.sr-only Previous
-    li.page-item
-      a.page-link(href=`?page=${pageNumber--}`) #{pageNumber--}
-    li.page-item.active
-      a.page-link(href=`?page=${pageNumber}`) #{pageNumber}
-    li.page-item
-      a.page-link(href=`?page=${pageNumber++}`) #{pageNumber++}
-    li.page-item
-      a.page-link(href="?page=0", aria-label="Next")
-        span(aria-hidden="true") &raquo;
-        span.sr-only Next
-  a.btn.btn-secondary(href="/users/add") Add more user
+  //
+    nav
+    ul.pagination
+      li.page-item
+        a.page-link(href="?page=0", aria-label="Previous")
+          span(aria-hidden="true") &laquo;
+          span.sr-only Previous
+      li.page-item
+        a.page-link(href=`?page=${pageNumber--}`) #{pageNumber--}
+      li.page-item.active
+        a.page-link(href=`?page=${pageNumber}`) #{pageNumber}
+      li.page-item
+        a.page-link(href=`?page=${pageNumber++}`) #{pageNumber++}
+      li.page-item
+        a.page-link(href="?page=0", aria-label="Next")
+          span(aria-hidden="true") &raquo;
+          span.sr-only Next
+    a.btn.btn-secondary(href="/users/add") Add more user

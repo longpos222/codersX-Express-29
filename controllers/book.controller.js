@@ -12,18 +12,20 @@ module.exports.add = function(req, res) {
 };
 
 module.exports.addPOST = async function(req, res) {
-//Chỗ nỳ sao thỉnh thoảng bị add db 2 lần dubble
-  var newBooksList = await Book.findOneAndUpdate(
+  var isExists = await Book.find({title: req.body.title, desc: req.body.desc});
+  var errors = []
+  if (isExists.length != 0) {
+    errors.push('This book is existed !')
+    res.render("books/add",{
+      errors: errors
+    });
+    return;
+  }
+
+var newBooksList = await Book.findOneAndUpdate(
     {title: req.body.title},
     {title: req.body.title, desc: req.body.desc},
-    {upsert: true},
-    function (error, success) {
-      if (error) {
-          console.log(`Error: ${error}`);
-      } else {
-          console.log("Result: " + success);
-      }
-    }  
+    {upsert: true}, 
   )
 
   res.redirect("/books");

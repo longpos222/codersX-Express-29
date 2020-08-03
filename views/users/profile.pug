@@ -23,8 +23,5 @@ block content
                 img(src=book ? book.coverUrl : "")        
               td.col=book ? book.title : "Invalid book"
               td.col-6=book ? book.desc : "No description"
-                //td.col
-                  .group-btn
-                    a.btn.btn-primary.mr-2(href='/transactions/create/' + book.Id) Borrow this book
       a.btn.btn-secondary(href="/cart/borrow") Borrow All Books
       

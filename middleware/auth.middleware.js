@@ -5,9 +5,7 @@ module.exports.requireAuth = async function(req, res, next) {
     res.redirect("auth/login");
     return;
   }
-  console.log(`auth x ne hehe: ${req.signedCookies.userId}`)
-  var user =  await User.findOne({_id: req.signedCookies.userId})
-
+    var user =  await User.findOne({_id: req.signedCookies.userId})
   if (!user) {
     res.redirect("auth/login");
     return;
