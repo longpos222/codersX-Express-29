@@ -14,12 +14,13 @@ block content
         th(scope="col") Book title
         th(scope="col") Action
     tbody
-      each tranx in transactionsList
-        tr
-          td=tranx ? tranx.userName : "Invalid user"
-          td=tranx ? tranx.id : "Invalid ID"
-          td=tranx ? tranx.bookTitle : "Invalid book"
-          td
-            .group-btn
-              a.btn.btn-primary(href=`/transactions/${tranx.id}/complete`) Complete
+      if transactionsList
+        each tranx in transactionsList
+          tr
+            td=tranx ? tranx.userName : "Invalid user"
+            td=tranx ? tranx.id : "Invalid ID"
+            td=tranx ? tranx.bookTitle : "Invalid book"
+            td
+              .group-btn
+                a.btn.btn-primary(href=`/transactions/${tranx.id}/complete`) Complete
   a.btn.btn-secondary(href="/transactions/create") Add more transaction  

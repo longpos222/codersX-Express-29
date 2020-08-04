@@ -14,7 +14,7 @@ cloudinary.config({
 
 module.exports.usersList = async function(req, res) {
   var pageNumber = parseInt(req.query.page) || 1;
-  var perPage = 2;
+  var perPage = 10;
   res.render("users/users-list", {
     usersList: await User.find().limit(perPage).skip((pageNumber-1)*perPage),
     pageNumber: pageNumber.toString()

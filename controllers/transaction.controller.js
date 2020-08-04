@@ -11,15 +11,13 @@ module.exports.transactionsList = async (req, res) => {
     transactionsList = await Transaction.findOne({ userId: authUser.id });
   }
 
-  var mapUserName = async function(userId) {
-    var user =  await User.findOne({_id: userId })
-    return user.name;
-  };
+  if(!transactionsList) {
+    res.render("transactions/transactions-list", {
+      transactionsList
+    });
+    return;
+  }
 
-  var mapBookTitle = async function(bookId) {
-    var book =  await Book.findOne({_id: bookId })
-    return book.title;
-  };
   var finalTransList = await Promise.all(
     transactionsList.map(async function(tranx) {
       var id = tranx.id;      

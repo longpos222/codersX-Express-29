@@ -2,6 +2,7 @@ var md = require("md5");
 var bcrypt = require("bcrypt");
 var saltRounds = 10;
 const dotenv = require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -47,14 +48,21 @@ module.exports.postLogin = async function(req, res) {
   }
 
   if (!bcrypt.compareSync(authPassword, user.password)) {
-    await User.findOneAndUpdate({ email: authEmail },{wrongLoginCount: ++user.wrongLoginCount})
-
+    await User.findOneAndUpdate(
+      { 
+        email: authEmail 
+      },
+      {
+        wrongLoginCount: ++user.wrongLoginCount
+      }
+    )
     res.render("auth/login", {
       errors: ["Wrong password !"],
       values: req.body
     });
     return;
   }
+
   res.cookie("userId", user.id, {
     signed: true
   });
@@ -62,8 +70,33 @@ module.exports.postLogin = async function(req, res) {
   if (sessionId) {
     await Session.findOneAndUpdate(
       {sessionId: sessionId},
-      {userId: user.id},
-      {upsert: true})
+      {userId: user.id}
+    )
   }
+
+  //const accessTokenKey = jwt.sign(user, process.env.ACCESS_TOKEN_KEY)
   res.redirect("/transactions");
+};
+
+module.exports.register = function(req, res) {
+  res.render("auth/register");
+};
+
+module.exports.postRegister = async function(req, res) {
+  var newEmail = req.body.email;
+  var hashPassword = await bcrypt.hash(req.body.password, saltRounds);
+  var newUser = {email: newEmail, password : hashPassword};
+  var emailExists = User.find({email: newEmail});
+  
+  if (!emailExists) {
+    res.render("auth/register", {
+      errors: ["Email already exists !"],
+      values: req.body
+    });
+  }
+
+  await User.insertMany(newUser)
+  res.render("auth/register", {
+    message: 'Congras, Register Done !'
+  });
 };
