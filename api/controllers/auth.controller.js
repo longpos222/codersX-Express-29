@@ -6,7 +6,7 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const User = require('../../models/user.model.js')
-
+  
 module.exports.postLogin = async function(req, res) {
   var authEmail = req.body.email;
   var authPassword = req.body.password;

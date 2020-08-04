@@ -16,6 +16,4 @@ router.get("/delete/:_id", controller.delete);
 
 router.post("/update-title/:_id", controller.updatePOST);
 
-router.get('')
-
 module.exports = router;

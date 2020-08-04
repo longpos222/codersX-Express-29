@@ -1,0 +1,62 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "name": "Launch via nodemon",
+          "type": "node",
+          "request": "launch",
+          "program": "${workspaceRoot}/node_modules/nodemon/bin/nodemon.js",
+          "stopOnEntry": false,
+          "args": [
+              "--debug",
+              "--nolazy",
+              "${workspaceRoot}/app/server/server.js"
+          ],
+          "cwd": "${workspaceRoot}",
+          "preLaunchTask": null,
+          "runtimeExecutable": null,
+          "restart": true,
+          "runtimeArgs": [
+              "--nolazy"
+          ],
+          "env": {
+              "NODE_ENV": "development"
+          },
+          "console": "internalConsole",
+          "sourceMaps": false
+      },
+      {
+          "type": "node",
+          "request": "attach",
+          "name": "Attach to Nodemon",
+          "address": "localhost",
+          "port": 5858,
+          "restart": true
+      },
+      {
+          "name": "Launch chrome with debugger",
+          "type": "chrome",
+          "request": "launch",
+          "url": "http://localhost:3000",
+          "webRoot": "${workspaceRoot}/app/client",
+          "userDataDir": "${workspaceRoot}/.vscode/chrome"
+      }
+  ],
+  "compounds": [
+      {
+          "name": "Launch WebSite",
+          "configurations": [
+              "Launch via nodemon",
+              "Attach to Nodemon"
+          ]
+      },
+      {
+          "name": "Launch WebSite with chrome",
+          "configurations": [
+              "Launch via nodemon",
+              "Attach to Nodemon",
+              "Launch chrome with debugger"
+          ]
+      }
+  ]
+}
