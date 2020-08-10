@@ -7,10 +7,12 @@ var router = express.Router();
 
 router.get("/", middleware.requireAuth, controller.transactionsList);
 
-// router.get("/create", controller.create);
+router.post("/", controller.addTranx);
 
-// router.post("/create", controller.createPOST);
+router.get("/:_id", middleware.requireAuth, controller.getTranxById);
 
-// router.get("/:_id/complete", controller.complete);
+router.delete("/:_id", controller.deleteTranx);
+
+router.patch("/:_id", controller.updateTranx);
 
 module.exports = router;

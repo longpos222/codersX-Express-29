@@ -7,10 +7,9 @@ Resource|POST<br>create|GET<br>read|PUT<br>update|DELETE<br>delete|
 :-|:-:|:-:|:-:|:-:|
 `/auth/login`|log in|-|-|-|
 `/auth/logout`|log out|-|-|-|
-`/auth/register`|register|-|-|-|
 `/books`|add a new book|info all books|-|-|
-`/books/id`|-|list info of this book|update this book title|delete this book|
+`/books/:_id`|-|list info of this book|update this book title|delete this book|
 `/transactions`|add new trx|get all trx|-|-|
-`/transactions/id/`|-|list info of this trx|update status this trx|delete this trx|
+`/transactions/:_id/`|-|list info of this trx|update status this trx|delete this trx|
 `/users`|add new user|list all users|-|-|
-`/users/id/`|-|list info of this user|update user info|delete this user|
+`/users/:_id/`|-|list info of this user|update user info|delete this user|

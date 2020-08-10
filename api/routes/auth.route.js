@@ -4,8 +4,8 @@ var controller = require("../controllers/auth.controller");
 
 var router = express.Router();
 
-//router.get("/login", controller.login);
-
 router.post("/login", controller.postLogin);
+
+router.post("/logout", controller.postLogout);
 
 module.exports = router;

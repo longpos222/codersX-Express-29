@@ -6,16 +6,12 @@ var router = express.Router();
 
 router.get("/", controller.booksList);
 
-// router.get("/add", controller.add);
+router.post("/", controller.addBook);
 
-router.post("/add", controller.addPOST);
+router.get("/:_id", controller.getBookById);
 
-// router.get("/update-title/:_id", controller.update);
+router.delete("/:_id", controller.deleteBook);
 
-// router.get("/delete/:_id", controller.delete);
-
-// router.post("/update-title/:_id", controller.updatePOST);
-
-// router.get('')
+router.patch("/:_id", controller.updateBook);
 
 module.exports = router;
