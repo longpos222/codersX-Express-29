@@ -13,3 +13,6 @@ Resource|POST<br>create|GET<br>read|PUT<br>update|DELETE<br>delete|
 `/transactions/:_id/`|-|list info of this trx|update status this trx|delete this trx|
 `/users`|add new user|list all users|-|-|
 `/users/:_id/`|-|list info of this user|update user info|delete this user|
+
+## POSTMAN link summary
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1822c2e6ee5841368ca7) 

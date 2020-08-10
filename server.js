@@ -8,10 +8,11 @@ mongoose.connect(process.env.MONGO_URL,{useNewUrlParser: true, useUnifiedTopolog
 mongoose.set('useFindAndModify', false);
 
 const userRoute = require('./routes/user.route');
+const apiUserRoute = require('./api/routes/user.route.js');
 const bookRoute = require('./routes/book.route');
 const apiBookRoute = require('./api/routes/book.route.js');
 const transactionRoute = require('./routes/transaction.route');
-const apiTransactionRoute = require('./api/routes/transaction.route')
+const apiTransactionRoute = require('./api/routes/transaction.route');
 const authRoute = require('./routes/auth.route');
 const apiAuthRoute = require('./api/routes/auth.route');
 const cartRoute = require('./routes/cart.route');
@@ -32,8 +33,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.use('/users', authMiddleware.requireAuth, userRoute);
+app.use('/api/users', apiUserRoute);
 app.use('/books',bookRoute);
-app.use('/api/books', apiBookRoute)
+app.use('/api/books', apiBookRoute);
 app.use('/transactions', authMiddleware.requireAuth, transactionRoute);
 app.use('/api/transactions', apiTransactionRoute);
 app.use('/auth', authRoute);
