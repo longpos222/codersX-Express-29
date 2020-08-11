@@ -16,3 +16,11 @@ Resource|POST<br>create|GET<br>read|PUT<br>update|DELETE<br>delete|
 
 ## POSTMAN link summary
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1822c2e6ee5841368ca7) 
+
+# codersX-Express-27 - Exercise 3
+Nghiên cứu Swagger để viết API documentation gửi cho anh bạn mobile engineer kia. Lưu lại những gì bạn viết vào một file gist và submit.
+
+Bài giải [Link Gist](https://gist.github.com/longpos222/f48b01d34f371d72e55d039e09791dc9)
+
+Screenshot API Page
+![Image](./public/uploads/SwaggerUI-api-docs.png)

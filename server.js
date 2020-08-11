@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv').config();
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 mongoose.connect(process.env.MONGO_URL,{useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useFindAndModify', false);
@@ -41,6 +43,7 @@ app.use('/api/transactions', apiTransactionRoute);
 app.use('/auth', authRoute);
 app.use('/api/auth', apiAuthRoute);
 app.use('/cart', cartRoute);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/', authMiddleware.requireAuth, (req, res) => res.render('index'));
 

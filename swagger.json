@@ -1,0 +1,736 @@
+{
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "swagger": "2.0",
+  "securityDefinitions": {
+  },
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "summary": "GET User - Get all infor",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "GETUser-Getallinfor"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/POSTUser-CreatenewoneRequest"
+            },
+            "in": "body",
+            "name": "Body",
+            "required": true,
+            "description": ""
+          }
+        ],
+        "summary": "POST User - Create new one",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "POSTUser-Createnewone"
+      }
+    },
+    "/books": {
+      "get": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "summary": "GET Book - Get all infor",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "GETBook-Getallinfor"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/POSTBook-CreatenewoneRequest"
+            },
+            "in": "body",
+            "name": "Body",
+            "required": true,
+            "description": ""
+          }
+        ],
+        "summary": "POST Book - Create new one",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "POSTBook-Createnewone"
+      }
+    },
+    "/users/{_id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "",
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "summary": "GET User - Get infor by User ID",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "GETUser-GetinforbyUserID"
+      },
+      "patch": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "",
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/PATCHUser-UpdateavatarUrlbyUserIDRequest"
+            },
+            "in": "body",
+            "name": "Body",
+            "required": true,
+            "description": ""
+          }
+        ],
+        "summary": "PATCH User - Update avatarUrl by User ID",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "PATCHUser-UpdateavatarUrlbyUserID"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "",
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "summary": "DELETE User - Delete User by ID",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "DELETEUser-DeleteUserbyID"
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/POSTAuth-LoginRequest"
+            },
+            "in": "body",
+            "name": "Body",
+            "required": true,
+            "description": ""
+          }
+        ],
+        "summary": "POST Auth - Log in",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "POSTAuth-Login"
+      }
+    },
+    "/books/{_id}": {
+      "patch": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "",
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/PATCHBook-UpdatetitlebybookIDRequest"
+            },
+            "in": "body",
+            "name": "Body",
+            "required": true,
+            "description": ""
+          }
+        ],
+        "summary": "PATCH Book - Update title by book ID",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "PATCHBook-UpdatetitlebybookID"
+      },
+      "get": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "",
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "summary": "GET Book - Get infor by book ID",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "GETBook-GetinforbybookID"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "",
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "summary": "DELETE Book - Delete book by ID",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "DELETEBook-DeletebookbyID"
+      }
+    },
+    "/transactions": {
+      "get": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "summary": "GET Tranx - Get all infor",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "GETTranx-Getallinfor"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/POSTTranx-CreatenewoneRequest"
+            },
+            "in": "body",
+            "name": "Body",
+            "required": true,
+            "description": ""
+          }
+        ],
+        "summary": "POST Tranx - Create new one",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "POSTTranx-Createnewone"
+      }
+    },
+    "/transactions/{_id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "",
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "summary": "GET Tranx - Get infor by Tranx ID",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "GETTranx-GetinforbyTranxID"
+      },
+      "patch": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "",
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "summary": "PATCH Tranx - Update status by Tranx ID",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "PATCHTranx-UpdatestatusbyTranxID"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "header",
+            "default": "Bearer {token}",
+            "name": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "",
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "summary": "DELETE Tranx - Delete Tranx by ID",
+        "deprecated": false,
+        "responses": {
+          "200": {
+            "headers": {
+            },
+            "description": ""
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "DELETETranx-DeleteTranxbyID"
+      }
+    }
+  },
+  "host": "localhost:8080",
+  "consumes": [
+    "application/json"
+  ],
+  "basePath": "/api",
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "POSTTranx-CreatenewoneRequest": {
+      "properties": {
+        "bookId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "title": "POSTTranx-CreatenewoneRequest",
+      "type": "object",
+      "example": {
+        "bookId": "5f1fcd0cdb5f44abea1b74cb",
+        "userId": "5f1ffc75e9d40a02847321f1"
+      },
+      "required": [
+        "userId",
+        "bookId"
+      ]
+    },
+    "PATCHBook-UpdatetitlebybookIDRequest": {
+      "properties": {
+        "title": {
+          "type": "string"
+        }
+      },
+      "title": "PATCHBook-UpdatetitlebybookIDRequest",
+      "type": "object",
+      "example": {
+        "title": "Đường xưa mây trắng"
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "POSTAuth-LogoutRequest": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "POSTAuth-LogoutRequest",
+      "type": "object",
+      "example": {
+        "email": "long@gmail.com",
+        "password": "123456"
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "POSTUser-CreatenewoneRequest": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "POSTUser-CreatenewoneRequest",
+      "type": "object",
+      "example": {
+        "email": "sauthui@gmail.com",
+        "phone": "123123123",
+        "password": "$2b$10$sM0aQpVeuB9MWGlWez5S0O2/qD51kXCJPovuDBYavYvQBVcvYSaFm",
+        "name": "SauThui"
+      },
+      "required": [
+        "name",
+        "phone",
+        "email",
+        "password"
+      ]
+    },
+    "POSTAuth-LoginRequest": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "POSTAuth-LoginRequest",
+      "type": "object",
+      "example": {
+        "email": "longnt8910@gmail.com",
+        "password": "123456"
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "POSTBook-CreatenewoneRequest": {
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "desc": {
+          "type": "string"
+        }
+      },
+      "title": "POSTBook-CreatenewoneRequest",
+      "type": "object",
+      "example": {
+        "title": "title moi ne 01",
+        "desc": "desc moi ne 01"
+      },
+      "required": [
+        "title",
+        "desc"
+      ]
+    },
+    "PATCHUser-UpdateavatarUrlbyUserIDRequest": {
+      "properties": {
+        "avatarUrl": {
+          "type": "string"
+        }
+      },
+      "title": "PATCHUser-UpdateavatarUrlbyUserIDRequest",
+      "type": "object",
+      "example": {
+        "avatarUrl": "url moi 01"
+      },
+      "required": [
+        "avatarUrl"
+      ]
+    }
+  },
+  "info": {
+    "contact": {
+    },
+    "title": "Express-27-02-API",
+    "description": "API list for Express-27-02",
+    "version": "1.0"
+  }
+}

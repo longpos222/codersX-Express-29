@@ -1,4 +1,4 @@
-var md = require("md5");
+//var md = require("md5");
 var bcrypt = require("bcrypt");
 var saltRounds = 10;
 const dotenv = require("dotenv").config();
