@@ -3,8 +3,8 @@ var Book = require("../models/book.model.js");
 module.exports.booksList = async (req, res) => {
   try {
     var booksList = await Book.find();
-    var a; 
-    a.b();
+    // var a; 
+    // a.b();
     res.render("books/books-list", {
       booksList: booksList,
     });
