@@ -1,10 +1,16 @@
-var Book = require("../models/book.model.js")
+var Book = require("../models/book.model.js");
 
 module.exports.booksList = async (req, res) => {
-  var booksList = await Book.find();
-  res.render("books/books-list", {
-    booksList: booksList,
-  });
+  try {
+    var booksList = await Book.find();
+    var a; 
+    a.b();
+    res.render("books/books-list", {
+      booksList: booksList,
+    });
+  } catch (error) {
+    res.render('errors/500.pug');
+  }
 };
 
 module.exports.add = function(req, res) {
@@ -13,9 +19,9 @@ module.exports.add = function(req, res) {
 
 module.exports.addPOST = async function(req, res) {
   var isExists = await Book.find({title: req.body.title, desc: req.body.desc});
-  var errors = []
+  var errors = [];
   if (isExists.length != 0) {
-    errors.push('This book is existed !')
+    errors.push('This book is existed !');
     res.render("books/add",{
       errors: errors
     });
@@ -26,7 +32,7 @@ module.exports.addPOST = async function(req, res) {
     {title: req.body.title},
     {title: req.body.title, desc: req.body.desc},
     {upsert: true}, 
-  )
+  );
 
   res.redirect("/books");
 };
@@ -41,7 +47,7 @@ module.exports.update = async function(req, res) {
 };
 
 module.exports.delete = async function(req, res) {
-  await Book.findOneAndDelete({_id: req.params._id})
+  await Book.findOneAndDelete({_id: req.params._id});
   res.redirect("/books");
 };
 
