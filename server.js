@@ -23,7 +23,7 @@ const sessionMiddleware = require('./middleware/session.middleware');
 //const cookieMiddleware = require('./middleware/cookie.middleware');
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 app.set('view engine', 'pug');
 app.set('views', './views');
