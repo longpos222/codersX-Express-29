@@ -1,26 +1,9 @@
-# codersX-Express-27 - Exercise 2
-Bạn quyết định làm đầy đủ chức năng cho mobile app. Hãy viết các endpoint còn lại theo suy nghĩ của bạn.
+# codersX-Express-28
+Khi code server của bạn có lỗi gì đó như truy cập một property nào đó của một giá trị undefined, nó sẽ throw lỗi và server sẽ tự động render trang error cho status 500.
+1) Thử viết đoạn code sau vào một controller bất kì var a; a.b();
+2) Mở route tương ứng trên trình duyệt xem lỗi ra sao
+3) Viết 1 trang hiển thị lỗi 500 một cách đẹp mắt hơn
 
-## API list:
+## Screenshot of error page:
 
-Resource|POST<br>create|GET<br>read|PUT<br>update|DELETE<br>delete|
-:-|:-:|:-:|:-:|:-:|
-`/auth/login`|log in|-|-|-|
-`/auth/logout`|log out|-|-|-|
-`/books`|add a new book|info all books|-|-|
-`/books/:_id`|-|list info of this book|update this book title|delete this book|
-`/transactions`|add new trx|get all trx|-|-|
-`/transactions/:_id/`|-|list info of this trx|update status this trx|delete this trx|
-`/users`|add new user|list all users|-|-|
-`/users/:_id/`|-|list info of this user|update user info|delete this user|
-
-## POSTMAN link summary
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1822c2e6ee5841368ca7) 
-
-# codersX-Express-27 - Exercise 3
-Nghiên cứu Swagger để viết API documentation gửi cho anh bạn mobile engineer kia. Lưu lại những gì bạn viết vào một file gist và submit.
-
-Bài giải [Link Gist](https://gist.github.com/longpos222/f48b01d34f371d72e55d039e09791dc9)
-
-Screenshot API Page
-![Image](./public/uploads/SwaggerUI-api-docs.png)
+![Image](public/uploads/Error-500-page.png)
