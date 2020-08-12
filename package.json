@@ -7,8 +7,8 @@
   "description": "A simple Node app built on Express, instantly up and running.",
   "main": "server.js",
   "scripts": {
-    "debug": "node --inspect server.js",
-    "start": "nodemon server.js"
+    "debug": "nodemon --inspect server.js",
+    "start": "node server.js"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.2.1",
